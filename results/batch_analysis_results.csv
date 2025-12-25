@@ -1,0 +1,5 @@
+url,ml_phishing_probability,ml_binary_prediction,rule_based_score,rule_based_reasons,derived_attack_type,final_phishing_decision,decision_factors
+https://google.com,0.4614694708153187,0,0,,unknown,0,No strong indicators
+http://paypal-login-secure-update.com,0.5902243908233022,1,2,Multiple hyphens in a long domain; HTTP (no HTTPS) used for sensitive keywords,credential_phishing,1,Derived attack type suggests phishing (credential_phishing) | ML predicted phishing (P=0.59) | Minor rule-based flags (score=2)
+https://facebook.com,0.4640727722768481,0,0,,unknown,0,No strong indicators
+http://verify-account-security-check.info/login,0.5408938402424489,1,3,Multiple hyphens in a long domain; Suspicious keyword 'login' found outside primary domain; HTTP (no HTTPS) used for sensitive keywords,credential_phishing,1,Derived attack type suggests phishing (credential_phishing) | ML predicted phishing (P=0.54) | Strong rule-based suspicion (score=3)

@@ -1,0 +1,15 @@
+,non_null_count,dtype
+url_length,4000,int64
+domain_length,4000,int64
+num_digits,4000,int64
+num_dots,4000,int64
+num_hyphens,4000,int64
+has_https,4000,int64
+num_subdirs,4000,int64
+num_query_params,4000,int64
+contains_login,4000,int64
+contains_secure,4000,int64
+contains_account,4000,int64
+contains_update,4000,int64
+contains_verify,4000,int64
+label,4000,int64

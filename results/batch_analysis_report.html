@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phishing Analysis Batch Report</title>
+<style>
+ body { font-family: Arial, sans-serif; margin: 20px; color: #222; }
+ h1 { color: #0b5; } 
+ .summary { background:#f7f7f7; padding: 12px; border-left: 6px solid #0b5; margin-bottom: 16px; }
+ table { width:100%; border-collapse: collapse; margin-top: 12px; }
+ th, td { border:1px solid #ddd; padding: 6px; font-size: 13px; }
+ th { background:#f2f2f2; }
+ .phish { color: red; font-weight: bold; }
+ .safe { color: green; font-weight: bold; }
+ .error { color: orange; font-weight: bold; }
+</style>
+</head>
+<body>
+<h1>Phishing Analysis Batch Report</h1>
+<p><em>Generated: 2025-12-12 21:45:05</em></p>
+<div class="summary">
+
+        <p><strong>Project:</strong> Hybrid ML & Rule-Based Phishing URL Detection System<br/>
+        <strong>Author:</strong> SYED AHAMED WASIK (24MCA052) — MCA, Jamal Mohamed College, Trichy</p>
+        <p><strong>Summary:</strong> This report lists the results of a batch analysis of URLs using
+        a hybrid approach combining a supervised machine learning model and a rule-based detection engine.
+        The ML model used features such as URL length, domain length, numeric counts, presence of suspicious
+        tokens (login, verify, secure), and structural features (subdirectories, query parameters).</p>
+        
+
+        <p><strong>Practical Impact:</strong> The system helps prevent credential theft and financial loss by
+        flagging suspicious URLs. It can be used by students, faculty, or staff to check links before clicking.
+        Organizations can integrate this as a pre-filter in email gateways or web-proxy systems.</p>
+        
+<ul>
+ <li>Total URLs analyzed: 4</li>
+ <li>Phishing (flagged): 2</li>
+ <li>Safe: 2</li>
+ <li>Errors: 0</li>
+ <li>Force-attack-type-mode: True</li>
+</ul>
+</div>
+
+<h2>Visual Summary</h2>
+<p><img src="summary_bar.png" alt="summary chart"></p>
+<p><img src="prob_hist.png" alt="prob histogram"></p>
+
+<h2>Top 20 Most Suspicious (by ML probability)</h2>
+<ol>
+<li><b>http://paypal-login-secure-update.com</b><br>ML_prob: 0.5902 | RuleScore: 2 | AttackType: credential_phishing | Final: PHISHING<br><small>Rules: Multiple hyphens in a long domain; HTTP (no HTTPS) used for sensitive keywords</small></li><li><b>http://verify-account-security-check.info/login</b><br>ML_prob: 0.5409 | RuleScore: 3 | AttackType: credential_phishing | Final: PHISHING<br><small>Rules: Multiple hyphens in a long domain; Suspicious keyword 'login' found outside primary domain; HTTP (no HTTPS) used for sensitive keywords</small></li><li><b>https://facebook.com</b><br>ML_prob: 0.4641 | RuleScore: 0 | AttackType: unknown | Final: SAFE<br><small>Rules: </small></li><li><b>https://google.com</b><br>ML_prob: 0.4615 | RuleScore: 0 | AttackType: unknown | Final: SAFE<br><small>Rules: </small></li>
+</ol>
+
+<h2>Full Results (CSV)</h2>
+<p>The detailed CSV is saved as: <code>batch_analysis_results.csv</code></p>
+
+</body></html>

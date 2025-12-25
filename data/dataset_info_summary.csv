@@ -1,0 +1,17 @@
+,non_null_count,dtype
+url,370,object
+url_len,370,int64
+count_dot,370,int64
+count_hyphen,370,int64
+has_at,370,int64
+has_ip,370,int64
+domain_len,370,int64
+tld_len,370,int64
+count_digits,370,int64
+https,370,int64
+num_subdirs,370,int64
+forms_count,370,int64
+password_field,370,int64
+external_resources,370,int64
+label,370,int64
+is_tamilnadu,370,int64
