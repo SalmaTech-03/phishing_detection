@@ -5,11 +5,11 @@
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![ML Framework](https://img.shields.io/badge/framework-scikit--learn-orange.svg)](https://scikit-learn.org/)
-[![Status](https://img.shields.io/badge/status-production--ready-blue.svg)](#)
+[![Topic](https://img.shields.io/badge/domain-AI%20%26%20Cybersecurity-red.svg)](#)
 
 ## Project Abstract
 
-This project implements an end-to-end cybersecurity solution for identifying malicious URLs. It utilizes a hybrid approach that integrates supervised Machine Learning classifiers with a heuristic rule-based engine. By analyzing lexical and structural features of a URL, the system predicts the probability of phishing and categorizes the specific attack vector, such as credential theft or malware distribution. The solution includes a complete data pipeline, a graphical user interface (GUI) for real-time analysis, and a batch processing tool for large-scale reporting.
+This project implements a hybrid cybersecurity solution for identifying malicious URLs. It utilizes an integrated pipeline that combines supervised Machine Learning classifiers with a heuristic rule-based engine. The system analyzes lexical and structural URL features to predict the probability of phishing and categorize attack types. The solution includes a modular data pipeline, a graphical user interface (GUI) for real-time inference, and a batch processing tool for large-scale reporting and statistical visualization.
 
 ## System Architecture
 
@@ -20,85 +20,68 @@ graph TD
     B --> D[Structural Analysis]
     B --> E[Keyword Extraction]
     C & D & E --> F[Feature Vector]
-    F --> G[Machine Learning Model]
-    F --> H[Rule-Based Heuristic Engine]
-    G --> I[Phishing Probability]
+    F --> G[Machine Learning Classifier]
+    F --> H[Heuristic Rule Engine]
+    G --> I[Phishing Probability Score]
     H --> J[Attack Type & Suspicion Score]
     I & J --> K[Hybrid Decision Logic]
     K --> L[Final Verdict: Safe / Phishing]
     L --> M[Output: GUI / HTML Report / CSV]
 ```
 
-## Core Features
+## Technical Specializations
 
-*   Hybrid Decision Logic: Combines Machine Learning (Random Forest/XGBoost) with a rule-based engine to minimize false negatives.
-*   Attack Type Classification: Heuristically identifies attack vectors including Credential Phishing, Financial Theft, Account Verification, Prize Scams, and Malware Attacks.
-*   Real-Time Analysis: A Tkinter-based GUI for individual URL verification with detailed decision factors.
-*   Automated Batch Reporting: Processes multiple URLs from CSV or TXT files, generating comprehensive HTML dashboards and statistical charts.
-*   Extensive Feature Engineering: Extracts 20+ features including domain length, subdirectory depth, IP-based hosting detection, and sensitive keyword flags.
+### AI & Machine Learning Component
+The Machine Learning architecture focuses on:
+*   **Supervised Learning Pipeline:** Implementation of Random Forest and XGBoost classifiers for binary classification.
+*   **Feature Optimization:** Robust scaling of high-dimensional feature vectors and handling of imbalanced classes.
+*   **Evaluation Metrics:** Comparative analysis using Accuracy, Precision, Recall, and F1-Score across multiple train-test splits (60/40, 70/30, 80/20).
 
-## Machine Learning Pipeline
+### Phishing Detection & Domain Logic
+The cybersecurity framework focuses on:
+*   **Heuristic Engine:** A rule-based scoring system designed to identify brand impersonation and malicious redirection tricks.
+*   **Attack Taxonomy:** Categorization of URLs into specific vectors: Credential Phishing, Financial Theft, Account Verification, Prize Scams, and Malware Distribution.
+*   **Lexical Engineering:** Extraction of domain-specific indicators such as subdirectory depth, IP-based hosting, and sensitive keyword flags.
 
-### 1. Data Processing
-The system utilizes curated datasets from sources such as PhishTank, UCI, and Kaggle. Data is cleaned and labeled (0 for Legitimate, 1 for Phishing) before being merged into a master training set.
+## Hybrid Decision Logic
 
-### 2. Feature Engineering
-The engine extracts three categories of features:
-*   Structural: URL length, domain length, number of dots, hyphens, and subdirectories.
-*   Abnormalities: Presence of the '@' symbol, IP addresses in the hostname, and absence of HTTPS.
-*   Keywords: Detection of high-risk strings such as 'login', 'verify', 'update', and 'bank' in the URL path or query.
-
-### 3. Training and Evaluation
-The pipeline supports multiple tree-based models (Random Forest, XGBoost) and Logistic Regression. Models are evaluated using:
-*   Accuracy, Precision, Recall, and F1-Score.
-*   Confusion Matrix analysis.
-*   K-fold cross-validation across different train-test splits (60/40, 70/30, 80/20).
-
-## Hybrid Engine Logic
-
-The final verdict is reached through a weighted combination of ML output and heuristic scores:
-*   ML Prediction: Provides a probability score between 0 and 1.
-*   Rule-Based Score: Adds suspicion points for red flags (e.g., HTTP with sensitive keywords, brand impersonation patterns).
-*   Override Logic: If the rule-based engine identifies a high-confidence attack pattern, it can override a borderline ML prediction to ensure maximum security.
+The system utilizes a dual-layered verification process:
+1.  **Probabilistic Layer:** The ML model generates a confidence score between 0 and 1 based on learned patterns from the UCI and PhishTank datasets.
+2.  **Deterministic Layer:** The heuristic engine applies security rules (e.g., checking for sensitive keywords over non-HTTPS connections or IP-based hosting).
+3.  **Final Synthesis:** The system aggregates both scores. High-confidence heuristic red flags can override borderline ML predictions to ensure maximum protection against zero-day phishing attempts.
 
 ## Project Structure
 
 ```text
 phishing_detection/
 ├── data/                    # Raw and processed datasets
-├── models/                  # Serialized .pkl models and scalers
-├── results/                 # Batch results, CSVs, and HTML reports
-├── step1_environment.py     # Environment setup and abstract
-├── step2_engineering.py     # Feature extraction logic
-├── step3_merge.py           # Dataset integration
-├── step4_training.py        # Model training and rule definition
+├── models/                  # Serialized ML models, scalers, and feature lists
+├── results/                 # Batch results, CSVs, and HTML dashboards
+├── step1_environment.py     # Environment configuration
+├── step2_engineering.py     # URL feature extraction logic
+├── step3_merge.py           # Dataset integration and labeling
+├── step4_training.py        # ML training and heuristic definition
 ├── step5_gui.py             # Tkinter GUI implementation
-├── batch_report.py          # Batch analysis and HTML generation
+├── batch_report.py          # Batch analysis and project visualization
 ├── requirements.txt         # Dependency specifications
 └── README.md                # Technical documentation
 ```
 
 ## Technical Implementation
 
-### Requirements
-*   Python 3.8+
-*   Pandas, Numpy (Data Manipulation)
-*   Scikit-Learn (Machine Learning)
-*   Matplotlib, Seaborn (Visualizations)
-*   Tkinter (GUI)
-
 ### Execution Flow
-1. Data Preparation: Execute steps 1 through 3 to process raw data and engineer features.
-2. Model Training: Execute step 4 to generate the `main_phishing_model.pkl` and `scaler.pkl`.
-3. Deployment: 
-    *   Run `step5_integrate_predict_gui.py` for the interactive interface.
-    *   Run `batch_analysis_project_report.py` for automated analysis of URL lists.
+1. **Preprocessing:** Execute steps 1-3 to transform raw URL lists into a processed, feature-engineered dataset.
+2. **Model Training:** Execute step 4 to generate `main_phishing_model.pkl` and the associated feature scaler.
+3. **Inference:** 
+    *   **GUI:** Run `step5_integrate_predict_gui.py` for real-time URL analysis.
+    *   **Batch:** Run `batch_analysis_project_report.py` to process large datasets and generate HTML visual reports.
 
-## Ethical Statement
+## Ethical Governance
 
-This software is developed for defensive cybersecurity research and educational purposes. It is designed to empower users and organizations to identify malicious infrastructure. The developers emphasize the responsible use of this tool and do not condone its application for unauthorized activities.
+This project is developed under the principles of **Responsible AI**. It prioritizes **Explainability (XAI)** by providing human-readable reasons for every detection. The system is designed for defensive security research, providing transparent analysis to reduce user vulnerability to social engineering.
 
+## Development Team
 
-*   Development Team: WASIK-S (Lead Developer), Salma S (Architect/Contributor)
+*   **WASIK-S:** Phishing Detection & Domain Logic (Lead for Heuristic Engine, Feature Extraction, and Cybersecurity Framework).
+*   **Salma S:** AI & Machine Learning Engineering (Lead for Model Architecture, Training Pipelines, and Evaluation).
 
-***
